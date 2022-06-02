@@ -36,31 +36,52 @@ ui <- fluidPage(
   #tags$image(src = "Lovato_Jakob_Ex_1.jpg",
   #           style = "position: absolute"),
   theme = light_theme,
-  
   titlePanel("Percolation Simulation"),
-  
-  sidebarLayout(
-    sidebarPanel(
-      # Using CSS to modify sidebar panel appearance
-      tags$style(".well {background-color: rgba(255, 255, 255, 0.5);
-                 border-radius: 20px;
-                 border-width: 0px;
-                 box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.10);
-                 }"),
+  fluidRow(
+    column(11,
+      style = "background-color: rgba(243, 200, 59);
+               border-radius: 20px;
+               margin: 20px;",
       
-      helpText("Select the dimension of the percolation system and the probability of site occupation below"),
+
       
-      numericInput("dim", label = h3("Dimension"), min = 5, max = 1000, value = 100),
-      
-      sliderInput("prob", label = h3("Site occupation probability"), min = 0, max = 1, value = 0.59)
-    ),
-    
-    mainPanel(
-      helpText("Percolation theory describes the behavior of a system of interconnected nodes."),
-      helpText("A system “percolates” if there is some cluster that is able to reach from one 
-               boundary in a system to another boundary."),
-      
-      plotOutput("plot")
+      fluidRow(
+        fluidRow(
+          column(4,
+            # Using CSS to modify sidebar panel appearance
+            #style = "background-color: rgba(255, 255, 255, 0.5);
+            #           border-radius: 20px;
+            #           border-width: 0px;
+            #           box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.10);",
+            
+            #just mess with alignment for now
+            style = "background-color: rgba(88, 187, 208);
+                     border-radius: 20px;
+                     padding: 20px;
+                     margin: 20px;",
+            
+            helpText("Select the dimension of the percolation system and the probability of site occupation below"),
+            
+            numericInput("dim", label = h3("Dimension"), min = 5, max = 1000, value = 100),
+            
+            sliderInput("prob", label = h3("Site occupation probability"), min = 0, max = 1, value = 0.59)
+          ),
+          
+          column(6,
+            
+            style = "background-color: rgba(232, 150, 148);
+                     border-radius: 20px;
+                     padding: 20px;
+                     margin: 20px;",
+            
+            helpText("Percolation theory describes the behavior of a system of interconnected nodes."),
+            helpText("A system “percolates” if there is some cluster that is able to reach from one 
+                     boundary in a system to another boundary."),
+            
+            plotOutput("plot")
+          )
+        )
+      )
     )
   )
 )
