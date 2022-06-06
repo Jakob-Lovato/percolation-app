@@ -16,78 +16,115 @@ library(sysfonts)
 source("helpers.R")
 
 # Create custom theme for app
-light_theme <- bs_add_variables(
-  bs_theme(
-    bg = "#F7F7F7",
-    fg = "#000000",
-    primary = "#5067e8",
+my_theme <- bs_theme(
+    #defining background here messes with the slider widget's coloring
+    #bg = "rgba(21, 42, 54)", 
+    primary = "rgba(138, 220, 221)",
     secondary = "#000000",
-    base_font = font_google("Varela"),
-    heading_font = font_google("Varela Round")
-  ),
-  "badge-border-radius" = "0.5em"
-)
-
-# Make plot background obey theme
-shinyOptions(plot.autocolors = TRUE)
+    base_font = font_google("Montserrat", wght = "400"),
+    heading_font = font_google("Montserrat Alternates", wght = "600")
+  )
 
 # Create user interface
 ui <- fluidPage(
+  
+  #background color must be defined outside of bs_theme to avoid 
+  #issue with slider input coloring
+  tags$head(tags$style(HTML('body {
+                             background-color: rgba(21, 42, 54);
+              }'))),
+  
   title = "Percolation Simulation",
-  #tags$image(src = "Lovato_Jakob_Ex_1.jpg",
-  #           style = "position: absolute"),
-  theme = light_theme,
-  #titlePanel("Percolation Simulation"),
+  
+  theme = my_theme,
+  
   fluidRow(
     column(11,
-      style = "background-color: rgba(243, 200, 59);
+           
+      style = "background-color: rgba(245, 245, 245);
                border-radius: 50px;
-               margin: 20px 0px 20px 20px;",
-      
-
+               position: absolute;
+               top: 50%;
+               left: 50%;
+               transform: translate(-50%, -50%);",
       
       fluidRow(
-        #fluidRow(
           column(2,
-            # Using CSS to modify sidebar panel appearance
-            #style = "background-color: rgba(255, 255, 255, 0.5);
-            #           border-radius: 20px;
-            #           border-width: 0px;
-            #           box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.10);",
-            
-            #just mess with alignment for now
-            style = "background-color: rgba(88, 187, 208);
+                 
+            style = "background-color: rgba(255, 255, 255);
                      border-radius: 30px;
                      padding: 20px;
-                     margin: 20px;",
+                     margin: 20px;
+                     box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.10);",
             
-            numericInput("dim", label = h4("Dimension", style = "margin-top: 10px;"), min = 5, max = 1000, value = 100),
+            tags$style("#dim {background-color: rgba(138, 220, 221);
+                       border-radius: 10px;
+                       border-width: 0px;}"),
             
-            sliderInput("prob", label = h4("Site occupation probability"), min = 0, max = 1, value = 0.59),
+            numericInput("dim", label = h4("Dimension", style = "margin-top: 10px; color: rgba(21, 42, 54)"),
+                         min = 5, max = 1000, value = 100),
             
+            tags$style("#prob {
+                       .irs-bar,
+                       .irs-bar-edge,
+                       .irs-single,
+                       .irs-grid-pol {
+                         background: red;
+                         border-color: red;
+                       }
+                       }"),
+            
+            sliderInput("prob", label = h4("Site occupation probability", style = "color: rgba(21, 42, 54);"),
+                        min = 0, max = 1, value = 0.6),
+            br(),
+            br(),
+            br(),
+            br(),
+            br(),
+            br(),
             br(),
             
-            p("Select the dimension of the percolation system and the probability of site occupation above.")
+            #github link
+            tags$a(
+              href="https://github.com/Jakob-Lovato/percolation-app", 
+              tags$img(src="github_logo.png",
+                       height = "30"),
+              tags$text("View project on Github",
+                        style = "font-size: 13px;")
+            )
           ),
           
           column(4,
             
-            style = "background-color: rgba(232, 150, 148);
+            style = "background-color: rgba(255, 255, 255);
                      border-radius: 30px;
                      padding: 20px;
                      margin-top: 20px;
                      margin-right: 20px;
-                     margin-bottom: 20px;",
+                     margin-bottom: 20px;
+                     box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.10);",
             
-            h2("Percolation Simulation", style = "margin-top: 0px;"),
+            h2("Percolation Simulation", style = "margin-top: 0px; color: rgba(21, 42, 54);"),
+            
             p("Percolation theory describes the behavior of a system of interconnected nodes.
-              A system “percolates” if there is some cluster that is able to reach from one 
-                     boundary in a system to another boundary."),
+              A system “percolates” if there is some cluster of occupied nodes (or sites)
+              that is able to reach from one boundary in a system to another boundary."),
             
-            plotOutput("plot")
-          )
-          
-        #)
+            p("In the panel to the left, select the dimension of the plot you want to generate,
+              and the site occupation probability. This is the probability that each pixel (or
+              site) on the grid will be occupied. Occupied sites are shown in grey, non-occupied
+              sites are white, and if the system has a percolating cluser, it will be highlighted
+              in light blue."),
+            
+            p("Note: Percolation typically first occurs with a site occupation probability of about 0.59. 
+              Suggested probabilities are between 0.59 and 0.7")
+          ),
+          column(5,
+                 
+                 style = "margin: auto;",
+                 
+                 plotOutput("plot")
+        )
       )
     )
   )
