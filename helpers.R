@@ -1,6 +1,7 @@
 ### This script contains the functions used in the percolation shiny app
 ### Functions are reused/modified from my Spring 2022 
 ### Stat 753 (Stochastic Models and Simulations) final project
+### Jakob Lovato, 2022
 
 library(ggplot2)
 library(reshape2)
@@ -41,11 +42,17 @@ plotPerc <- function(grid){
   ggplot(melt(percMat[nrow(percMat):1,]), aes(x = Var1, y = Var2, fill = factor(value))) +
     geom_tile() +
     coord_fixed(ratio = 1) +
-    scale_fill_manual(values = c("white", "lightgrey", "black")) +
+    scale_fill_manual(values = c(rgb(245, 245, 245, maxColorValue = 255), 
+                                 rgb(211, 219, 224, maxColorValue = 255),
+                                 rgb(138, 220, 221, maxColorValue = 255))) +
     theme(panel.background = element_blank(),
           axis.title = element_blank(),
           axis.text = element_blank(),
           axis.ticks = element_blank(),
+          axis.line = element_blank(),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          plot.background = element_rect(fill = "transparent"),
           legend.position = "none"
     )
 }
