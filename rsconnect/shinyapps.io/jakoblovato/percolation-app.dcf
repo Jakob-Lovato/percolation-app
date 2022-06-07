@@ -5,9 +5,9 @@ account: jakoblovato
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 6386614
-bundleId: 5953529
+bundleId: 5986952
 url: https://jakoblovato.shinyapps.io/percolation-app/
-when: 1653693417.84792
-lastSyncTime: 1653693417.84793
+when: 1654634553.60728
+lastSyncTime: 1654634553.60729
 asMultiple: FALSE
 asStatic: FALSE
