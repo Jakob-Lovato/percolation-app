@@ -1,6 +1,8 @@
 # percolation-app
 Using R and Shiny to create a simple web app to simulate site percolation on a 2D grid
 
+View this web app in your browser: https://jakoblovato.shinyapps.io/percolation-app/
+
 This was a personal project and first attempt at learning how to create a web app in Shiny. Emphasis was placed on theming the app so it wasn't generic looking. It was also a first attempt at using CSS, so code may be a bit messy.
 
 The function of the app is to allow users to generate a 2D grid, where each 'site' or pixel is occupied with some probability. Clusters are formed by adjacent occupied sites (up, down, left, and right, but NOT diagonal), and the system 'percolates' if there is one cluster that touches two opposite boundaries in the sysetm (i.e. the cluster touches both the top and bottom or both the left and right edges of the grid). In particular, this is called "site percolation". See https://en.wikipedia.org/wiki/Percolation_theory
