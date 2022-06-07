@@ -90,7 +90,7 @@ ui <- fluidPage(
               tags$img(src="github_logo.png",
                        height = "30"),
               tags$text("View project on Github",
-                        style = "font-size: 13px;")
+                        style = "font-size: 12px;")
             )
           ),
           
