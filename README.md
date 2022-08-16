@@ -9,6 +9,6 @@ The function of the app is to allow users to generate a 2D grid, where each 'sit
 
 The code to generate grids with randomly occupied sites, detect percolating clusters, and plot the grid was pulled from a section of code I wrote for my final project for Stat 753 - Stochastic Models and Simulations at the University of Nevada, Reno, which I took in the Spring 2022 semester.
 
-Known bug in the code: When plotting, ggplot swaps the colors for occupied and non-occupied sites IF there is NOT a percolating cluster. This means, if the system does not percolate, the white and grey sites are all swapped. I.e., if the site occupation probability was set to 0.1, then 10% of the pixels in the grid should be grey and 90% should be white. However, due to the bug, the occupied sites are shown in white and the non-occupied sites are grey since the system (very likely) will not percolate.
+TODO: When plotting, ggplot swaps the colors for occupied and non-occupied sites IF there is NOT a percolating cluster. This means, if the system does not percolate, the white and grey sites are all swapped. I.e., if the site occupation probability was set to 0.1, then 10% of the pixels in the grid should be grey and 90% should be white. However, due to the bug, the occupied sites are shown in white and the non-occupied sites are grey since the system (very likely) will not percolate. Working on fix.
 
 Note: this Shiny app is not optimized for mobile devices, so accessing it on a desktop browser is recommended (it will probably render messily on phone screens).
